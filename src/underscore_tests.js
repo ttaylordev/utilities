@@ -16,18 +16,64 @@ var _ = { };
   // Return an array of the first n elements of an array. If n is undefined,
   // return just the first element.
   _.first = function(array, n) {
+    if (!n) {
+      return array[0];
+    } else if (n > array.length) {
+      n = array.length;
+    }
+    var arr = [];
+    for (var i = 0; i < n; i++) {
+      arr.push(array[i]);
+    }
+    return arr;
   };
 
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
-  _.last = function(array, n) {
-  };
+_.last = function(array, n) {
+      if(!n) {
+        return (array[array.length - 1]);
+      }
+      if (n > array.length) {
+        return array;
+      }
+      var arr = [];
+      for (var i = (array.length-n); i <= array.length-1 ;i++) {
+        arr.push(array[i]);
+      }
+      return arr;
+    };
+
+
+/*if (n === 0) {
+    return;
+    }
+    else
+    if(!n) {
+      return (array[array.length - 1]);
+    }
+    if (n > array.length) {
+      return array;
+    }
+    var arr = [];
+    for (var i = (array.length-1); i >=(array.length - n) ;i--) {
+      arr.push(array[i]);
+    }
+    return arr;
+  };*/ // returns the last elements of an array in reverse order
 
   // Call iterator(value, key, collection) for each element of collection.
   // Accepts both arrays and objects.
   _.each = function(collection, iterator) {
+    for (var key in collection) {
+      var val = collection[key];
+      iterator(val, key, collection);
+    }
   };
 
+_.each([1,2,3,4,5], function(val, key, collection){
+  console.log(val + " is the " + key + " item in the collection " + collection);
+});
   // Returns the index at which value can be found in the array, or -1 if value
   // is not present in the array.
   _.indexOf = function(array, target){
@@ -106,7 +152,7 @@ var _ = { };
 
   // Return a function that can be called at most one time. Subsequent calls
   // should return the previously returned value.
-  _.once = function(func) {
+  _.once = function(func) { // use closure
   };
 
   // Memoize an expensive function by storing its results. You may assume
@@ -164,3 +210,13 @@ var _ = { };
   };
 
 }).call(this);
+
+
+
+
+
+
+
+
+
+//returns last elements in array in reverse order
